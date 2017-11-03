@@ -1,0 +1,52 @@
+#include <iostream>
+#include <sstream>
+#include <utility>
+
+using namespace std;
+
+bool read(int *A, unsigned int razmer){
+    string stroka;
+    getline(cin,stroka);
+    istringstream stream(stroka);
+    for(unsigned int i = 0; i<razmer; i++){
+        if(!(stream>>A[i])){
+            bool result = false;
+            return false;
+        }
+    }
+    return true;
+}
+
+void buble_sort(int* A,unsigned int razmer) {
+    bool result = false;
+    while (!result) {
+        result=true;
+        for (unsigned int i = 0; i < razmer - 1; i++) {
+            if (A[i] > A[i + 1]) {
+                swap(A[i], A[i + 1]);
+                 result = false;
+            }
+        }
+    }
+}
+
+    void write(int *A, unsigned int razmer) {
+        for (unsigned int i = 0; i < razmer; i++) {
+            cout << A[i] << " ";
+        }
+    }
+
+    int main() {
+
+        unsigned int razmer;
+        cin >> razmer;
+        cin.get();
+        int *A = new int[razmer];
+        if (read(A, razmer)) {
+            buble_sort(A, razmer);
+            write(A, razmer);
+        } else {
+            cout << "An error has occured while reading numbers from line";
+        }
+        delete A;
+      }
